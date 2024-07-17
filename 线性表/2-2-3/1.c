@@ -35,5 +35,6 @@ int main()
     Insert(&sl,2,3);
     Insert(&sl,2,2);
     printf("%d",sl.Data[1]);
+    
     return 0;
 }
