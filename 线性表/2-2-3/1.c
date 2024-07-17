@@ -16,12 +16,24 @@ void InitList(SeqList *L)
     L->MaxSize=TheMaxSize;
 }
 int Insert(SeqList *L,int i,int e){
-    
+    if(i<1||i>L->Length+1)
+    return FALSE;
+    if(L->Length>=L->MaxSize)
+    return FALSE;
+    for(int j=L->Length;j>=i;j--){
+        L->Data[j]=L->Data[j-1];
+    }
+    L->Data[i-1]=e;
+    L->Length++;
+    return TRUE;
 }
 int main()
 {
     SeqList sl;
     InitList(&sl);
-    printf("hello world");
+    Insert(&sl,1,1);
+    Insert(&sl,2,3);
+    Insert(&sl,2,2);
+    printf("%d",sl.Data[1]);
     return 0;
 }
