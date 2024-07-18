@@ -46,6 +46,13 @@ int Delete(SeqList *L, int i, int e)
     L->Length--;
     return TRUE;
 }
+int UpDateElem(SeqList *L,int i,int e){
+    if(i<1||i>L->Length){
+        return FALSE;
+    }
+    L->Data[i-1]=e;
+    return TRUE;
+}
 int LocateElem(SeqList *L, int e)
 {
     for (int i = 0; i < L->Length; i++)
@@ -64,11 +71,30 @@ void PrintfList(SeqList *L)
         printf("%d : %d\n", i, L->Data[i]);
     }
 }
-
+void RemoveMin(SeqList *L)
+{
+    if(L->Length<1){
+        printf("输入顺序表为空");
+    }
+    int i=L->Data[0];
+    int j=0;
+    for(int k=1;k<L->Length;k++){
+        if(L->Data[k]<i){
+            i=L->Data[k];
+            j=k;
+        }
+    }
+    if(j!=L->Length){
+        UpDateElem(L,j+1,L->Data[L->Length-1]);
+    }
+    Delete(L,L->Length,0);
+}
 int main()
 {
     SeqList sl;
     InitList(&sl);
+    PrintfList(&sl);
+    RemoveMin(&sl);
     PrintfList(&sl);
     return 0;
 }

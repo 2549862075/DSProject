@@ -46,6 +46,13 @@ int Delete(SeqList *L, int i, int e)
     L->Length--;
     return TRUE;
 }
+int UpDateElem(SeqList *L,int i,int e){
+    if(i<1||i>L->Length){
+        return FALSE;
+    }
+    L->Data[i-1]=e;
+    return TRUE;
+}
 int LocateElem(SeqList *L, int e)
 {
     for (int i = 0; i < L->Length; i++)
@@ -64,7 +71,6 @@ void PrintfList(SeqList *L)
         printf("%d : %d\n", i, L->Data[i]);
     }
 }
-
 int main()
 {
     SeqList sl;
