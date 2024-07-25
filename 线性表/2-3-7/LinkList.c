@@ -17,10 +17,11 @@ int InitList(LinkList L)
 int GetLength(LinkList L)
 {
     int len = 0;
-    LNode *p = L;
-    while (p->next != NULL)
+    LNode *p = L->next;
+    while (p != NULL)
     {
         len++;
+        printf("%d:%d\n",len,p->data);
         p = p->next;
     }
     return len;
@@ -73,9 +74,42 @@ int DeleteElem(LinkList L,int e){
     }
     return FALSE;
 }
+LinkList List_HeadInsert(LinkList L){
+    LNode *s;
+    int x;
+    L=(LNode *)malloc(sizeof(LNode));
+    L->next=NULL;
+    scanf("%d",&x);
+    while(x!=999){
+        s=(LNode*)malloc(sizeof(LNode));
+        s->data=x;
+        s->next=L->next;
+        L->next=s;
+        scanf("%d",&x);
+    }
+    return L;
+}
+LinkList List_TailInsert(LinkList L){
+    int x;
+    L=(LNode*) malloc(sizeof(LNode));
+    LNode *s,*r=L;
+    scanf("%d",&x);
+    while (x!=999)
+    {
+        s=(LNode *)malloc(sizeof(LNode));
+        s->data=x;
+        r->next=s;
+        r=s;
+        scanf("%d",&x);
+    }
+    r->next=NULL;
+    return L;
+    
+}
 int main()
 {
     LinkList ll;
-    InitList(ll);
+    ll=List_HeadInsert(ll);
+    GetLength(ll);
     return 0;
 }
